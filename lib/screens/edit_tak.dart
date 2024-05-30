@@ -3,22 +3,26 @@ import 'package:todo_using_bloc/blocs/bloc_export.dart';
 import 'package:todo_using_bloc/model/task.dart';
 import 'package:todo_using_bloc/service/guid_gen.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({
+class EditTaskScreen extends StatelessWidget {
+  final Task oldTask;
+  const EditTaskScreen({
     super.key,
+    required this.oldTask,
   });
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController titlecontroller = TextEditingController();
-    TextEditingController descriptioncontroller = TextEditingController();
+    TextEditingController titlecontroller =
+        TextEditingController(text: oldTask.title);
+    TextEditingController descriptioncontroller =
+        TextEditingController(text: oldTask.description);
     return Container(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Column(
         children: [
           const Text(
-            "Add Task",
+            "Edit Task",
             style: TextStyle(fontSize: 24),
           ),
           const SizedBox(
@@ -50,15 +54,19 @@ class AddTaskScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var task = Task(
+                  var editedtask = Task(
                       title: titlecontroller.text,
                       description: descriptioncontroller.text,
-                      id: GUIDGen.generate(),
+                      id: oldTask.id,
+                      isFavourite: oldTask.isFavourite,
+                      isDone: false,
                       date: DateTime.now().toString());
-                  context.read<TasksBloc>().add(AddTask(task: task));
+                  context.read<TasksBloc>().add(
+                        EditTask(oldTask: oldTask, newTask: editedtask),
+                      );
                   Navigator.pop(context);
                 },
-                child: const Text("Add"),
+                child: const Text("Save"),
               ),
             ],
           ),
