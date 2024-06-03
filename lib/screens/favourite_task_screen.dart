@@ -6,7 +6,7 @@ import 'package:todo_using_bloc/widgets/tasks_list.dart';
 
 class FavouriteTaskScreen extends StatelessWidget {
   const FavouriteTaskScreen({super.key});
-  static const id = 'favourite_screen';
+  static const id = 'tasks_screen';
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {

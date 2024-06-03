@@ -6,7 +6,7 @@ import 'package:todo_using_bloc/widgets/tasks_list.dart';
 
 class CompletedTaskScreen extends StatelessWidget {
   const CompletedTaskScreen({super.key});
-  static const id = 'complete_screen';
+  static const id = 'tasks_screen';
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {

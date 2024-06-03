@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_using_bloc/blocs/bloc_export.dart';
 import 'package:todo_using_bloc/model/task.dart';
-import 'package:todo_using_bloc/service/guid_gen.dart';
 
-class AddTaskScreen extends StatelessWidget {
+import 'package:uuid/uuid.dart';
+
+class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({
     super.key,
   });
 
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  var uuid = Uuid();
   @override
   Widget build(BuildContext context) {
     TextEditingController titlecontroller = TextEditingController();
@@ -50,11 +58,14 @@ class AddTaskScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
+                  DateTime now = DateTime.now();
                   var task = Task(
                       title: titlecontroller.text,
                       description: descriptioncontroller.text,
-                      id: GUIDGen.generate(),
-                      date: DateTime.now().toString());
+                      id: uuid.v1(),
+                      date: DateFormat('dd-MM-yyyy hh-mm')
+                          .format(now)
+                          .toString());
                   context.read<TasksBloc>().add(AddTask(task: task));
                   Navigator.pop(context);
                 },

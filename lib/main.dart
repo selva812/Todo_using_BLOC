@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:todo_using_bloc/screens/tab_screen.dart';
 import 'package:todo_using_bloc/service/app_router.dart';
-import 'package:todo_using_bloc/service/app_theme.dart';
 
 import 'blocs/bloc_export.dart';
 
@@ -34,9 +33,6 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Flutter Todo using Bloc',
             debugShowCheckedModeBanner: false,
-            theme: state.switchValue
-                ? AppThemes.appThemeData[AppTheme.darkTheme]
-                : AppThemes.appThemeData[AppTheme.lightTheme],
             home: const TabsScreen(),
             onGenerateRoute: approuter.onGenerateRoute,
           );

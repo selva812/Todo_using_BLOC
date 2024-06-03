@@ -36,6 +36,9 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateFormat format = DateFormat("dd-MM-yyyy");
+    DateTime dateTime = format.parse(task.date);
+    print(dateTime);
     return Padding(
       padding: const EdgeInsets.only(left: 10.0),
       child: Row(
@@ -61,9 +64,7 @@ class TaskTile extends StatelessWidget {
                                 ? TextDecoration.lineThrough
                                 : null),
                       ),
-                      Text(
-                        DateFormat("dd-MM-yyyy  hh-mm").format(DateTime.now()),
-                      ),
+                      Text(task.date),
                     ],
                   ),
                 ),

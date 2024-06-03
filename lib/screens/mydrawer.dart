@@ -66,11 +66,11 @@ class MyDrawer extends StatelessWidget {
                     Switch(
                         value: state.switchValue,
                         onChanged: (newvalue) {
-                          newvalue
-                              ? context.read<SwitchBloc>().add(SwitchOnEvent())
-                              : context
-                                  .read<SwitchBloc>()
-                                  .add(SwitchOffEvent());
+                          // newvalue
+                          //     ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                          //     : context
+                          //         .read<SwitchBloc>()
+                          //         .add(SwitchOffEvent());
                         }),
                   ],
                 );

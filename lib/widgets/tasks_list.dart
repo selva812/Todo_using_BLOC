@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_using_bloc/model/task.dart';
 import 'package:todo_using_bloc/widgets/tasktile.dart';
+import 'package:uuid/uuid.dart';
 
 class TasksList extends StatefulWidget {
   const TasksList({
@@ -14,6 +15,7 @@ class TasksList extends StatefulWidget {
 }
 
 class _TasksListState extends State<TasksList> {
+  var uuid = Uuid();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +24,7 @@ class _TasksListState extends State<TasksList> {
         children: widget.tasklist
             .map(
               (task) => ExpansionPanelRadio(
-                value: task.id,
+                value: uuid.v1(),
                 headerBuilder: (context, isOpen) => TaskTile(task: task),
                 body: ListTile(
                   title: SelectableText.rich(
